@@ -2,12 +2,15 @@ class ApplicationController < ActionController::Base
       include Pagy::Backend
       include SessionsHelper  #追記
       
-private
+  private
 
   def require_user_logged_in
     unless logged_in?
       redirect_to login_url
     end
   end
-    
+
+  def counts(user)
+    @count_microposts = user.microposts.count
+  end
 end
